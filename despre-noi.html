@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Despre Noi - Robi Electronics</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .info-card {
+      flex: 1 1 200px;
+      background: var(--bg-nav);
+      color: white;
+      padding: 30px 20px;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+    .info-card h3 {
+      color: #00d2ff;
+      margin-top: 0;
+      font-size: 24px;
+    }
+    .info-card p {
+      color: #e0e0e0;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><span class="lang-ro">Despre Noi</span><span class="lang-en">About Us</span></h1>
+    <p>
+      <span class="lang-ro">Află povestea din spatele Robi Electronics</span>
+      <span class="lang-en">Discover the story behind Robi Electronics</span>
+    </p>
+  </header>
+
+  <nav>
+    <a href="index.html">
+       <span class="lang-ro">Acasă</span>
+       <span class="lang-en">Home</span>
+    </a>
+    <a href="servicii.html">
+       <span class="lang-ro">Servicii</span>
+       <span class="lang-en">Services</span>
+    </a>
+    <a href="preturi.html">
+       <span class="lang-ro">Prețuri</span>
+       <span class="lang-en">Pricing</span>
+    </a>
+    <a href="hosting.html">Robi-Hosting</a>
+    <div class="dropdown">
+      <button class="dropbtn">
+        <span class="lang-ro">Informații Utile <i class="arrow down"></i></span>
+        <span class="lang-en">Useful Info <i class="arrow down"></i></span>
+      </button>
+      <div class="dropdown-content">
+        <a href="despre-noi.html"><span class="lang-ro">Despre Noi</span><span class="lang-en">About Us</span></a>
+        <a href="echipa.html"><span class="lang-ro">Echipa Noastră</span><span class="lang-en">Our Team</span></a>
+        <a href="faq.html"><span class="lang-ro">Întrebări Frecvente</span><span class="lang-en">FAQ</span></a>
+        <a href="recenzii.html"><span class="lang-ro">Recenzii Clienți</span><span class="lang-en">Reviews</span></a>
+        <a href="termeni.html"><span class="lang-ro">Termeni și Condiții</span><span class="lang-en">Terms & Conditions</span></a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="darkModeToggle">🌙 <span class="lang-ro">Întunecat</span><span class="lang-en">Dark</span></button>
+      <button class="toggle-btn" id="langToggle">🌍 EN</button>
+    </div>
+  </nav>
+
+  <section class="container content-section">
+    <h2><span class="lang-ro">Povestea Noastră</span><span class="lang-en">Our Story</span></h2>
+    
+    <img src="poze/banner.png" alt="Robi Electronics Workshop" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 30px; box-shadow: var(--box-shadow);">
+
+    <p>
+      <strong><span class="lang-ro">Robi Electronics</span><span class="lang-en">Robi Electronics</span></strong> 
+      <span class="lang-ro">a fost fondată în anul 2020 în Orșova, din pasiunea pentru tehnologie și din dorința de a oferi servicii de reparații de încredere comunității locale. Ceea ce a început ca un mic atelier s-a transformat rapid într-ul dintre cele mai respectate centre de reparații electronice din regiune.</span>
+      <span class="lang-en">was founded in 2020 in Orsova, out of a passion for technology and a desire to provide reliable repair services to the local community. What started as a small workshop quickly grew into one of the most respected electronics repair centers in the region.</span>
+    </p>
+    
+    <p>
+      <span class="lang-ro">Echipa noastră s-a format în jurul a doi tehnicieni cu o experiență vastă în domeniul reparațiilor GSM și IT. Ne punem mereu la punct cu noile tehnologii pentru a putea aborda orice problemă, de la ecranul spart al unui telefon nou, până la depanarea la nivel de placă de bază a laptopurilor complexe.</span>
+      <span class="lang-en">Our team was formed around two technicians with extensive experience in GSM and IT repairs. We always stay up to date with new technologies so that we can tackle any problem, from the broken screen of a new phone to complex motherboard troubleshooting for laptops.</span>
+    </p>
+
+    <h2><span class="lang-ro">Misiune și Valori</span><span class="lang-en">Mission and Values</span></h2>
+    <p>
+      <span class="lang-ro">Suntem un service transparent. Promitem diagnosticări corecte, prețuri juste și piese de calitate. Valorificăm timpul clienților noștri, de aceea eficientizăm la maximum procesul de reparație, asigurând timpi rapizi de execuție de cele mai multe ori chiar în aceeași zi.</span>
+      <span class="lang-en">We are a transparent service center. We promise honest diagnostics, fair pricing, and quality parts. We value our customers' time, which is why we streamline the repair process to ensure fast turnaround times, often on the same day.</span>
+    </p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3><span class="lang-ro">Experiență</span><span class="lang-en">Experience</span></h3>
+        <p>
+          <span class="lang-ro">Peste 5 ani de reparații la nivel avansat, gestionând zilnic zeci de cazuri complexe.</span>
+          <span class="lang-en">Over 5 years of advanced repair experience, handling dozens of complex cases daily.</span>
+        </p>
+      </div>
+      <div class="info-card">
+        <h3><span class="lang-ro">Calitate</span><span class="lang-en">Quality</span></h3>
+        <p>
+          <span class="lang-ro">Folosim doar piese originale sau OEM de cea mai înaltă calitate, acompaniate de garanție extinsă.</span>
+          <span class="lang-en">We only use high-quality original or OEM parts, accompanied by an extended warranty.</span>
+        </p>
+      </div>
+      <div class="info-card">
+        <h3>Robi-Hosting</h3>
+        <p>
+          <span class="lang-ro">Prin divizia noastră digitală, ne-am extins oferind servicii web securizate pentru clienții pasionați.</span>
+          <span class="lang-en">Through our digital division, we have expanded to offer secure web services for passionate clients.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Robi Electronics Orșova | <span class="lang-ro">Toate drepturile rezervate</span><span class="lang-en">All rights reserved</span></p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

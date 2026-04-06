@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Echipa Noastră - Robi Electronics</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .team-member {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 30px;
+      width: 280px;
+      box-shadow: var(--box-shadow);
+      transition: transform 0.3s;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      background-color: var(--bg-nav);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      color: white;
+      border: 3px solid var(--accent-color);
+    }
+
+    .team-member h3 {
+      margin: 0 0 10px;
+      color: var(--accent-color);
+    }
+
+    .role {
+      font-weight: bold;
+      color: #e94560; /* Accentuare vizuală */
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .team-member p {
+      font-size: 14px;
+      color: var(--text-color);
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>
+      <span class="lang-ro">Echipa Noastră</span>
+      <span class="lang-en">Our Team</span>
+    </h1>
+    <p>
+      <span class="lang-ro">Oamenii care stau în spatele reparațiilor tale de succes</span>
+      <span class="lang-en">The people behind your successful repairs</span>
+    </p>
+  </header>
+
+  <nav>
+    <a href="index.html">
+       <span class="lang-ro">Acasă</span>
+       <span class="lang-en">Home</span>
+    </a>
+    <a href="servicii.html">
+       <span class="lang-ro">Servicii</span>
+       <span class="lang-en">Services</span>
+    </a>
+    <a href="preturi.html">
+       <span class="lang-ro">Prețuri</span>
+       <span class="lang-en">Pricing</span>
+    </a>
+    <a href="hosting.html">Robi-Hosting</a>
+    <div class="dropdown">
+      <button class="dropbtn">
+        <span class="lang-ro">Informații Utile <i class="arrow down"></i></span>
+        <span class="lang-en">Useful Info <i class="arrow down"></i></span>
+      </button>
+      <div class="dropdown-content">
+        <a href="despre-noi.html"><span class="lang-ro">Despre Noi</span><span class="lang-en">About Us</span></a>
+        <a href="echipa.html"><span class="lang-ro">Echipa Noastră</span><span class="lang-en">Our Team</span></a>
+        <a href="faq.html"><span class="lang-ro">Întrebări Frecvente</span><span class="lang-en">FAQ</span></a>
+        <a href="recenzii.html"><span class="lang-ro">Recenzii Clienți</span><span class="lang-en">Reviews</span></a>
+        <a href="termeni.html"><span class="lang-ro">Termeni și Condiții</span><span class="lang-en">Terms & Conditions</span></a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="darkModeToggle">🌙 <span class="lang-ro">Întunecat</span><span class="lang-en">Dark</span></button>
+      <button class="toggle-btn" id="langToggle">🌍 EN</button>
+    </div>
+  </nav>
+
+  <section class="container team-container">
+    <h2>
+      <span class="lang-ro">Specialiștii Robi Electronics</span>
+      <span class="lang-en">Robi Electronics Specialists</span>
+    </h2>
+    <div class="team-grid">
+      
+      <div class="team-member">
+        <div class="avatar">👨‍🔧</div>
+        <h3>Robert (Robi)</h3>
+        <span class="role">
+          <span class="lang-ro">Fondator & Tehnician Șef</span>
+          <span class="lang-en">Founder & Chief Technician</span>
+        </span>
+        <p>
+          <span class="lang-ro">Pasionat de electronică încă din copilărie, Robi coordonează echipele din atelier și se ocupă de reparațiile complexe la nivel de micro-lipituri (micro-soldering) pe plăci de bază.</span>
+          <span class="lang-en">Passionate about electronics since childhood, Robi coordinates the workshop teams and handles complex micro-soldering repairs on motherboards.</span>
+        </p>
+      </div>
+
+      <div class="team-member">
+        <div class="avatar">👨‍💻</div>
+        <h3>Alexandru</h3>
+        <span class="role">
+          <span class="lang-ro">Inginer Software & Hosting</span>
+          <span class="lang-en">Software & Hosting Engineer</span>
+        </span>
+        <p>
+          <span class="lang-ro">Specialist în diagnosticare software și recuperare date. Alexandru este de asemenea cel care gestionează divizia noastră de servere Robi-Hosting, asigurând uptime 99.9%.</span>
+          <span class="lang-en">Specialist in software diagnostics and data recovery. Alexandru also manages our Robi-Hosting server division, ensuring 99.9% uptime.</span>
+        </p>
+      </div>
+
+      <div class="team-member">
+        <div class="avatar">👩‍💼</div>
+        <h3>Ioana</h3>
+        <span class="role">
+          <span class="lang-ro">Relații Clienți</span>
+          <span class="lang-en">Customer Relations</span>
+        </span>
+        <p>
+          <span class="lang-ro">Mereu cu zâmbetul pe buze, Ioana vă preia dispozitivele la recepție, vă ține la curent cu statusul reparației și coordonează aspectele administrative și de garanție.</span>
+          <span class="lang-en">Always smiling, Ioana receives your devices at the front desk, keeps you updated on the repair status, and coordinates administrative and warranty aspects.</span>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Robi Electronics Orșova | <span class="lang-ro">Toate drepturile rezervate</span><span class="lang-en">All rights reserved</span></p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

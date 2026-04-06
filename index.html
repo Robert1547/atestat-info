@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Electronice - Acasă</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Specific styles for index.html only */
+    .hero {
+      background-color: var(--bg-card);
+      padding: 60px 40px;
+      text-align: center;
+      border-radius: 12px;
+      margin: 40px auto;
+      max-width: 1000px;
+      box-shadow: var(--box-shadow);
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s;
+    }
+    .hero h2 {
+      color: var(--accent-color);
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 18px;
+    }
+    .hero button {
+      background-color: var(--bg-nav);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: 20px;
+    }
+    .hero button:hover {
+      background-color: var(--hover-nav);
+      transform: translateY(-2px);
+    }
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 30px;
+      width: 300px;
+      box-shadow: var(--box-shadow);
+      text-align: center;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .service-card h3 {
+      color: var(--accent-color);
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Robi Electronics Orșova</h1>
+    <p>
+      <span class="lang-ro">Reparații rapide și profesionale pentru dispozitivele tale</span>
+      <span class="lang-en">Fast and professional repairs for your devices</span>
+    </p>
+  </header>
+
+  <nav>
+    <a href="index.html">
+       <span class="lang-ro">Acasă</span>
+       <span class="lang-en">Home</span>
+    </a>
+    <a href="servicii.html">
+       <span class="lang-ro">Servicii</span>
+       <span class="lang-en">Services</span>
+    </a>
+    <a href="preturi.html">
+       <span class="lang-ro">Prețuri</span>
+       <span class="lang-en">Pricing</span>
+    </a>
+    <a href="hosting.html">Robi-Hosting</a>
+    <div class="dropdown">
+      <button class="dropbtn">
+        <span class="lang-ro">Informații Utile <i class="arrow down"></i></span>
+        <span class="lang-en">Useful Info <i class="arrow down"></i></span>
+      </button>
+      <div class="dropdown-content">
+        <a href="despre-noi.html"><span class="lang-ro">Despre Noi</span><span class="lang-en">About Us</span></a>
+        <a href="echipa.html"><span class="lang-ro">Echipa Noastră</span><span class="lang-en">Our Team</span></a>
+        <a href="faq.html"><span class="lang-ro">Întrebări Frecvente</span><span class="lang-en">FAQ</span></a>
+        <a href="recenzii.html"><span class="lang-ro">Recenzii Clienți</span><span class="lang-en">Reviews</span></a>
+        <a href="termeni.html"><span class="lang-ro">Termeni și Condiții</span><span class="lang-en">Terms & Conditions</span></a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="darkModeToggle">🌙 <span class="lang-ro">Întunecat</span><span class="lang-en">Dark</span></button>
+      <button class="toggle-btn" id="langToggle">🌍 EN</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h2><span class="lang-ro">Bine ai venit!</span><span class="lang-en">Welcome!</span></h2>
+    <p><span class="lang-ro">Oferim reparații pentru telefoane, laptopuri, tablete și multe altele.</span><span class="lang-en">We offer repairs for phones, laptops, tablets and much more.</span></p>
+    <button onclick="location.href='contact.html'">
+       <span class="lang-ro">Solicită o reparație</span>
+       <span class="lang-en">Request a repair</span>
+    </button>
+  </section>
+
+  <section class="services">
+    <div class="service-card">
+      <h3><span class="lang-ro">Reparații telefoane</span><span class="lang-en">Phone repairs</span></h3>
+      <p><span class="lang-ro">Display spart, baterie defectă, probleme software.</span><span class="lang-en">Broken display, faulty battery, software issues.</span></p>
+    </div>
+    <div class="service-card">
+      <h3><span class="lang-ro">Reparații laptopuri</span><span class="lang-en">Laptop repairs</span></h3>
+      <p><span class="lang-ro">Curățare, schimbare tastatură, reinstalare sistem.</span><span class="lang-en">Cleaning, keyboard replacement, OS reinstall.</span></p>
+    </div>
+    <div class="service-card">
+      <h3><span class="lang-ro">Diagnosticare gratuită</span><span class="lang-en">Free diagnosis</span></h3>
+      <p><span class="lang-ro">Verificăm problema fără costuri inițiale.</span><span class="lang-en">We check the issue with no upfront costs.</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Robi Electronics Orșova | <span class="lang-ro">Toate drepturile rezervate</span><span class="lang-en">All rights reserved</span></p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

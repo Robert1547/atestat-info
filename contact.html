@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Service Electronice</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Specific styles for contact.html only */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 40px;
+    }
+    .contact-info, .contact-form {
+      flex: 1 1 400px;
+    }
+    .contact-info p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Contact</h1>
+    <p>
+      <span class="lang-ro">Suntem aici să te ajutăm!</span>
+      <span class="lang-en">We are here to help you!</span>
+    </p>
+  </header>
+
+  <nav>
+    <a href="index.html">
+       <span class="lang-ro">Acasă</span>
+       <span class="lang-en">Home</span>
+    </a>
+    <a href="servicii.html">
+       <span class="lang-ro">Servicii</span>
+       <span class="lang-en">Services</span>
+    </a>
+    <a href="preturi.html">
+       <span class="lang-ro">Prețuri</span>
+       <span class="lang-en">Pricing</span>
+    </a>
+    <a href="hosting.html">Robi-Hosting</a>
+    <div class="dropdown">
+      <button class="dropbtn">
+        <span class="lang-ro">Informații Utile <i class="arrow down"></i></span>
+        <span class="lang-en">Useful Info <i class="arrow down"></i></span>
+      </button>
+      <div class="dropdown-content">
+        <a href="despre-noi.html"><span class="lang-ro">Despre Noi</span><span class="lang-en">About Us</span></a>
+        <a href="echipa.html"><span class="lang-ro">Echipa Noastră</span><span class="lang-en">Our Team</span></a>
+        <a href="faq.html"><span class="lang-ro">Întrebări Frecvente</span><span class="lang-en">FAQ</span></a>
+        <a href="recenzii.html"><span class="lang-ro">Recenzii Clienți</span><span class="lang-en">Reviews</span></a>
+        <a href="termeni.html"><span class="lang-ro">Termeni și Condiții</span><span class="lang-en">Terms & Conditions</span></a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="darkModeToggle">🌙 <span class="lang-ro">Întunecat</span><span class="lang-en">Dark</span></button>
+      <button class="toggle-btn" id="langToggle">🌍 EN</button>
+    </div>
+  </nav>
+
+  <section class="container contact-container">
+    <div class="contact-info">
+      <h2><span class="lang-ro">Date de contact</span><span class="lang-en">Contact Info</span></h2>
+      <p><strong><span class="lang-ro">Adresă</span><span class="lang-en">Address</span>:</strong> Str. Ștefan cel Mare nr. 28, Orșova, Mehedinți</p>
+      <p><strong><span class="lang-ro">Telefon</span><span class="lang-en">Phone</span>:</strong> <a href="tel:+40750482696" style="color:var(--accent-color);">+40 750 482 696</a></p>
+      <p><strong>Email:</strong> <a href="mailto:rotariuonti2025@gmail.com" style="color:var(--accent-color);">rotariuonti2025@gmail.com</a></p>
+      <p><strong><span class="lang-ro">Program</span><span class="lang-en">Working Hours</span>:</strong> <span class="lang-ro">Luni - Vineri: 09:00 - 18:00</span><span class="lang-en">Monday - Friday: 09:00 - 18:00</span></p>
+
+      <h2><span class="lang-ro">Locație pe hartă</span><span class="lang-en">Location on map</span></h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11335.282012620468!2d22.40320595!3d44.743678700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47518886c3f62d89%3A0x7ce0d8ef2143d54a!2sStrada%20%C5%9Etefan%20cel%20Mare%2028%2C%20Or%C8%99ova%20225200!5e0!3m2!1sro!2sro!4v1757160351618!5m2!1sro!2sro" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="contact-form">
+      <h2><span class="lang-ro">Trimite-ne un mesaj</span><span class="lang-en">Send us a message</span></h2>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="nume"><span class="lang-ro">Nume</span><span class="lang-en">Name</span></label>
+          <input type="text" id="nume" name="nume" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="dispozitiv"><span class="lang-ro">Tip dispozitiv</span><span class="lang-en">Device type</span></label>
+          <input type="text" id="dispozitiv" name="dispozitiv">
+        </div>
+
+        <div class="form-group">
+          <label for="mesaj"><span class="lang-ro">Mesaj</span><span class="lang-en">Message</span></label>
+          <textarea id="mesaj" name="mesaj" rows="5" required></textarea>
+        </div>
+
+        <button type="submit">
+          <span class="lang-ro">Trimite</span><span class="lang-en">Send</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Robi Electronics Orșova | <span class="lang-ro">Toate drepturile rezervate</span><span class="lang-en">All rights reserved</span></p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prețuri Generale - Robi Electronics</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .calculator-section {
+      background-color: var(--bg-nav);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      color: white;
+    }
+
+    .calculator-section label {
+      color: white;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .checkbox-item:hover {
+      border-color: var(--accent-color);
+    }
+
+    .checkbox-item input {
+      margin-right: 15px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .checkbox-info {
+      flex: 1;
+      color: var(--text-color);
+    }
+
+    .checkbox-info strong {
+      display: block;
+      color: var(--accent-color);
+    }
+    
+    .checkbox-info span {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .checkbox-price {
+      font-weight: bold;
+      color: var(--accent-color);
+      font-size: 18px;
+    }
+
+    .total-box {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: var(--bg-header);
+      color: var(--text-header);
+      border-radius: 8px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: var(--box-shadow);
+      border: 1px solid var(--border-color);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Robi Electronics Orșova</h1>
+    <p>
+      <span class="lang-ro">Calculează rapid costurile serviciilor noastre</span>
+      <span class="lang-en">Quickly calculate our service costs</span>
+    </p>
+  </header>
+
+  <nav>
+    <a href="index.html">
+       <span class="lang-ro">Acasă</span>
+       <span class="lang-en">Home</span>
+    </a>
+    <a href="servicii.html">
+       <span class="lang-ro">Servicii</span>
+       <span class="lang-en">Services</span>
+    </a>
+    <a href="preturi.html">
+       <span class="lang-ro">Prețuri</span>
+       <span class="lang-en">Pricing</span>
+    </a>
+    <a href="hosting.html">Robi-Hosting</a>
+    <div class="dropdown">
+      <button class="dropbtn">
+        <span class="lang-ro">Informații Utile <i class="arrow down"></i></span>
+        <span class="lang-en">Useful Info <i class="arrow down"></i></span>
+      </button>
+      <div class="dropdown-content">
+        <a href="despre-noi.html"><span class="lang-ro">Despre Noi</span><span class="lang-en">About Us</span></a>
+        <a href="echipa.html"><span class="lang-ro">Echipa Noastră</span><span class="lang-en">Our Team</span></a>
+        <a href="faq.html"><span class="lang-ro">Întrebări Frecvente</span><span class="lang-en">FAQ</span></a>
+        <a href="recenzii.html"><span class="lang-ro">Recenzii Clienți</span><span class="lang-en">Reviews</span></a>
+        <a href="termeni.html"><span class="lang-ro">Termeni și Condiții</span><span class="lang-en">Terms & Conditions</span></a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="darkModeToggle">🌙 <span class="lang-ro">Întunecat</span><span class="lang-en">Dark</span></button>
+      <button class="toggle-btn" id="langToggle">🌍 EN</button>
+    </div>
+  </nav>
+
+  <section class="container">
+    <h2>
+      <span class="lang-ro">Calculator Servicii Mixte</span>
+      <span class="lang-en">Mixed Services Calculator</span>
+    </h2>
+    <p style="text-align: center; margin-bottom: 30px;">
+      <span class="lang-ro">Alege tipul aparatului și serviciile dorite pentru a vedea costul estimativ.</span>
+      <span class="lang-en">Choose your device type and desired services to see the estimated cost.</span>
+    </p>
+
+    <div class="calculator-section">
+      <div class="form-group">
+        <label for="deviceCategory">
+          <span class="lang-ro">1. Categoria Dispozitivului</span>
+          <span class="lang-en">1. Device Category</span>
+        </label>
+        <select id="deviceCategory" onchange="calculateTotal()">
+          <option value="50">Telefon / Smartwatch (+50 RON)</option>
+          <option value="100">Tabletă / Tablet (+100 RON)</option>
+          <option value="150" selected>PC / Laptop (+150 RON)</option>
+          <option value="120">Consolă / Console (+120 RON)</option>
+          <option value="80">Periferice / Peripherals (+80 RON)</option>
+        </select>
+      </div>
+
+      <label>
+        <span class="lang-ro">2. Servicii Adiționale Noi</span>
+        <span class="lang-en">2. Additional Services</span>
+      </label>
+      <div class="checkbox-group">
+        
+        <label class="checkbox-item">
+          <input type="checkbox" id="chkDiagnosticare" value="100" onchange="calculateTotal()" checked>
+          <div class="checkbox-info">
+            <strong>
+              <span class="lang-ro">Diagnosticare Avansată</span>
+              <span class="lang-en">Advanced Diagnostics</span>
+            </strong>
+            <span>
+              <span class="lang-ro">Testare componente și evaluare software</span>
+              <span class="lang-en">Component testing and software evaluation</span>
+            </span>
+          </div>
+          <div class="checkbox-price">+100 RON</div>
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox" id="chkReparatie" value="150" onchange="calculateTotal()">
+          <div class="checkbox-info">
+            <strong>
+              <span class="lang-ro">Serviciu Reparație Hardware</span>
+              <span class="lang-en">Hardware Repair Service</span>
+            </strong>
+            <span>
+              <span class="lang-ro">Manopera pentru înlocuire piese (piesele se achită separat)</span>
+              <span class="lang-en">Labor for part replacement (parts paid separately)</span>
+            </span>
+          </div>
+          <div class="checkbox-price">+150 RON</div>
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox" id="chkCuratare" value="150" onchange="calculateTotal()">
+          <div class="checkbox-info">
+            <strong>
+              <span class="lang-ro">Mentenanță & Curățare</span>
+              <span class="lang-en">Maintenance & Cleaning</span>
+            </strong>
+            <span>
+              <span class="lang-ro">Curățare praf, schimbare pastă termoconductoare</span>
+              <span class="lang-en">Dust cleaning, thermal paste replacement</span>
+            </span>
+          </div>
+          <div class="checkbox-price">+150 RON</div>
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox" id="chkDeplasare" value="100" onchange="calculateTotal()">
+          <div class="checkbox-info">
+            <strong>
+              <span class="lang-ro">Deplasare la Domiciliu</span>
+              <span class="lang-en">Home Travel</span>
+            </strong>
+            <span>
+              <span class="lang-ro">Preluarea dispozitivului direct de la locație</span>
+              <span class="lang-en">Picking up the device straight from your location</span>
+            </span>
+          </div>
+          <div class="checkbox-price">+100 RON</div>
+        </label>
+      </div>
+    </div>
+
+    <div class="total-box">
+      <span class="lang-ro">Cost Estimat Total:</span>
+      <span class="lang-en">Total Estimated Cost:</span>
+      <span id="totalCost" style="color:var(--accent-color);">200</span> RON
+    </div>
+
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Robi Electronics Orșova | <span class="lang-ro">Toate drepturile rezervate</span><span class="lang-en">All rights reserved</span></p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    function calculateTotal() {
+      let total = 0;
+      
+      const categorySelect = document.getElementById("deviceCategory");
+      total += parseInt(categorySelect.value);
+
+      const checkboxes = [
+        document.getElementById("chkDiagnosticare"),
+        document.getElementById("chkReparatie"),
+        document.getElementById("chkCuratare"),
+        document.getElementById("chkDeplasare")
+      ];
+
+      checkboxes.forEach(cb => {
+        if (cb.checked) {
+          total += parseInt(cb.value);
+        }
+      });
+
+      const totalCostSpan = document.getElementById("totalCost");
+      totalCostSpan.textContent = total;
+      
+      totalCostSpan.style.opacity = 0;
+      setTimeout(() => {
+        totalCostSpan.style.opacity = 1;
+        totalCostSpan.style.transition = "opacity 0.3s ease-in-out";
+      }, 50);
+    }
+
+    if(document.readyState !== 'loading') {
+        calculateTotal();
+    } else {
+        document.addEventListener('DOMContentLoaded', function () {
+            calculateTotal();
+        });
+    }
+  </script>
+</body>
+</html>

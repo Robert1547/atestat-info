@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recenzii - Robi Electronics</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .review-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .review-card {
+      background: var(--bg-nav);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      position: relative;
+      border: 1px solid var(--border-color);
+    }
+
+    .review-card::before {
+      content: '\201C';
+      font-size: 60px;
+      color: rgba(255,255,255,0.1);
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      font-family: serif;
+    }
+
+    .stars {
+      color: #f39c12;
+      font-size: 18px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .review-text {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      opacity: 0.9;
+    }
+
+    .reviewer-name {
+      font-weight: bold;
+      color: #00d2ff;
+    }
+
+    .form-review {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 30px;
+      border-radius: 8px;
+      margin-top: 50px;
+      box-shadow: var(--box-shadow);
+    }
+
+    .form-review h3 {
+      margin-top: 0;
+      color: var(--accent-color);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>
+      <span class="lang-ro">Păreri Clienți</span>
+      <span class="lang-en">Customer Reviews</span>
+    </h1>
+    <p>
+      <span class="lang-ro">Ce spun cei care au apelat la serviciile noastre</span>
+      <span class="lang-en">What people say about our services</span>
+    </p>
+  </header>
+
+  <nav>
+    <a href="index.html">
+       <span class="lang-ro">Acasă</span>
+       <span class="lang-en">Home</span>
+    </a>
+    <a href="servicii.html">
+       <span class="lang-ro">Servicii</span>
+       <span class="lang-en">Services</span>
+    </a>
+    <a href="preturi.html">
+       <span class="lang-ro">Prețuri</span>
+       <span class="lang-en">Pricing</span>
+    </a>
+    <a href="hosting.html">Robi-Hosting</a>
+    <div class="dropdown">
+      <button class="dropbtn">
+        <span class="lang-ro">Informații Utile <i class="arrow down"></i></span>
+        <span class="lang-en">Useful Info <i class="arrow down"></i></span>
+      </button>
+      <div class="dropdown-content">
+        <a href="despre-noi.html"><span class="lang-ro">Despre Noi</span><span class="lang-en">About Us</span></a>
+        <a href="echipa.html"><span class="lang-ro">Echipa Noastră</span><span class="lang-en">Our Team</span></a>
+        <a href="faq.html"><span class="lang-ro">Întrebări Frecvente</span><span class="lang-en">FAQ</span></a>
+        <a href="recenzii.html"><span class="lang-ro">Recenzii Clienți</span><span class="lang-en">Reviews</span></a>
+        <a href="termeni.html"><span class="lang-ro">Termeni și Condiții</span><span class="lang-en">Terms & Conditions</span></a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="darkModeToggle">🌙 <span class="lang-ro">Întunecat</span><span class="lang-en">Dark</span></button>
+      <button class="toggle-btn" id="langToggle">🌍 EN</button>
+    </div>
+  </nav>
+
+  <section class="container reviews-container">
+    <h2>
+      <span class="lang-ro">Recenzii Recente</span>
+      <span class="lang-en">Recent Reviews</span>
+    </h2>
+
+    <div class="review-grid" id="reviewGrid">
+      <div class="review-card">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+          <img src="poze/avatar1.png" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-color);">
+          <div class="stars" style="margin-bottom: 0;">★★★★★</div>
+        </div>
+        <p class="review-text">"Serviciu impecabil! Mi-am spart ecranul la iPhone și l-au schimbat în fața mea într-o oră. Recomand 100%!"</p>
+        <span class="reviewer-name">- Andrei Popescu</span>
+      </div>
+
+      <div class="review-card">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+          <img src="poze/avatar2.png" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-color);">
+          <div class="stars" style="margin-bottom: 0;">★★★★★</div>
+        </div>
+        <p class="review-text">"Am apelat la ei pentru laptopul fetei mele căruia îi cursese apa pe tastatură. L-au curățat și acum merge perfect."</p>
+        <span class="reviewer-name">- Maria Ionescu</span>
+      </div>
+
+      <div class="review-card">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+          <img src="poze/avatar3.png" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-color);">
+          <div class="stars" style="margin-bottom: 0;">★★★★☆</div>
+        </div>
+        <p class="review-text">"Prețuri foarte bune. Singurul minus a fost că a trebuit să aștept o zi pentru că piesa nu era pe stoc."</p>
+        <span class="reviewer-name">- Cristi R.</span>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Folosesc serviciul lor de Game Hosting de 6 luni, serverul rulează perfect, zero lag. Profesioniști."</p>
+        <span class="reviewer-name">- Gaming_Ro</span>
+      </div>
+    </div>
+
+    <!-- Feedback form simulator -->
+    <div class="form-review">
+      <h3>
+        <span class="lang-ro">Lasă o Recenzie</span>
+        <span class="lang-en">Leave a Review</span>
+      </h3>
+      <div class="form-group">
+        <input type="text" id="newName" placeholder="Numele tău / Your name" required>
+      </div>
+      <div class="form-group">
+        <select id="newStars">
+          <option value="★★★★★">★★★★★ (5/5)</option>
+          <option value="★★★★☆">★★★★☆ (4/5)</option>
+          <option value="★★★☆☆">★★★☆☆ (3/5)</option>
+          <option value="★★☆☆☆">★★☆☆☆ (2/5)</option>
+          <option value="★☆☆☆☆">★☆☆☆☆ (1/5)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <textarea id="newMessage" rows="4" placeholder="Cum a fost experiența ta? / How was your experience?" required></textarea>
+      </div>
+      <button onclick="addReview()" class="action-btn">
+        <span class="lang-ro">Trimite Recenzia</span>
+        <span class="lang-en">Submit Review</span>
+      </button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Robi Electronics Orșova | <span class="lang-ro">Toate drepturile rezervate</span><span class="lang-en">All rights reserved</span></p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    function addReview() {
+      const name = document.getElementById('newName').value;
+      const stars = document.getElementById('newStars').value;
+      const message = document.getElementById('newMessage').value;
+
+      if(name && message) {
+        const grid = document.getElementById('reviewGrid');
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.style.animation = "fadeInDown 0.5s ease-out";
+        card.innerHTML = `
+          <div class="stars">${stars}</div>
+          <p class="review-text">"${message}"</p>
+          <span class="reviewer-name">- ${name}</span>
+        `;
+        grid.insertBefore(card, grid.firstChild);
+        
+        document.getElementById('newName').value = '';
+        document.getElementById('newMessage').value = '';
+      } else {
+        alert("Te rugăm să completezi numele și mesajul. / Please fill in name and message.");
+      }
+    }
+  </script>
+</body>
+</html>

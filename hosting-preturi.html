@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator Hosting - Robi-Hosting</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Suprascriere stiluri pentru Dark Theme specific de Hosting */
+    body {
+      background-color: #1a1a2e;
+      color: #eaeaea;
+    }
+    header {
+      background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+      color: #00d2ff;
+      border-bottom: 2px solid #e94560;
+    }
+    header h1 span {
+      color: #e94560;
+    }
+    nav {
+      background-color: #0f3460;
+      border-bottom: 1px solid #162447;
+    }
+    nav a:hover, .dropbtn:hover {
+      color: #e94560;
+      background-color: transparent;
+    }
+    .dropdown-content {
+      background-color: #0f3460;
+      border: 1px solid #1a1a2e;
+    }
+    .dropdown-content a:hover {
+      background-color: #162447;
+      color: #00d2ff;
+    }
+    .container {
+      background-color: #162447;
+      border: 1px solid #0f3460;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+    .container h2, label {
+      color: #00d2ff;
+    }
+    label {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    select {
+      background-color: #1a1a2e;
+      color: #eaeaea;
+      border: 1px solid #0f3460;
+    }
+    select:focus {
+      border-color: #e94560;
+      box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.2);
+    }
+    .total-box {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #0f3460;
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      border: 1px solid #e94560;
+    }
+    .total-box #costEur {
+      color: #e94560;
+      font-size: 32px;
+    }
+  </style>
+</head>
+<body class="dark-theme">
+
+  <header>
+    <h1>Robi<span>-Hosting</span></h1>
+    <p>
+      <span class="lang-ro">Configurează-ți serverul ideal la cel mai bun preț</span>
+      <span class="lang-en">Configure your ideal server at the best price</span>
+    </p>
+  </header>
+
+  <nav>
+    <a href="index.html"><span class="lang-ro">Electronics (Acasă)</span><span class="lang-en">Electronics (Home)</span></a>
+    <a href="hosting.html"><span class="lang-ro">Oferte Hosting</span><span class="lang-en">Hosting Offers</span></a>
+    <a href="hosting-preturi.html" style="color: #00d2ff;">
+      <span class="lang-ro">Calculator Server</span><span class="lang-en">Server Calculator</span>
+    </a>
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="langToggle">🌍 EN</button>
+    </div>
+  </nav>
+
+  <section class="container">
+    <h2>
+      <span class="lang-ro">Configurator VPS / Game Server</span>
+      <span class="lang-en">VPS / Game Server Configurator</span>
+    </h2>
+    
+    <div class="form-group">
+      <label for="serverType">
+        <span class="lang-ro">1. Tip Serviciu</span>
+        <span class="lang-en">1. Service Type</span>
+      </label>
+      <select id="serverType" onchange="calculateHosting()">
+        <option value="5">Virtual Private Server (VPS) - Base 5€</option>
+        <option value="8">Game Hosting (CS:GO, FiveM, Minecraft) - Base 8€</option>
+        <option value="12">Dedicated Seedbox - Base 12€</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="cpuCores">
+        <span class="lang-ro">2. Procesor (vCores)</span>
+        <span class="lang-en">2. Processor (vCores)</span>
+      </label>
+      <select id="cpuCores" onchange="calculateHosting()">
+        <option value="2">2 vCores Xeon (+2€)</option>
+        <option value="5">4 vCores Xeon (+5€)</option>
+        <option value="12">8 vCores AMD EPYC (+12€)</option>
+        <option value="25">16 vCores Dedicated (+25€)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="ramMemory">
+        <span class="lang-ro">3. Memorie RAM (DDR4/DDR5)</span>
+        <span class="lang-en">3. RAM Memory (DDR4/DDR5)</span>
+      </label>
+      <select id="ramMemory" onchange="calculateHosting()">
+        <option value="2">4 GB RAM (+2€)</option>
+        <option value="6">8 GB RAM (+6€)</option>
+        <option value="14">16 GB RAM (+14€)</option>
+        <option value="25">32 GB RAM (+25€)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="storageDrive">
+        <span class="lang-ro">4. Stocare Disk</span>
+        <span class="lang-en">4. Disk Storage</span>
+      </label>
+      <select id="storageDrive" onchange="calculateHosting()">
+        <option value="1">50 GB NVMe SSD (+1€)</option>
+        <option value="5">250 GB NVMe SSD (+5€)</option>
+        <option value="8">500 GB NVMe SSD (+8€)</option>
+        <option value="3">1 TB SATA HDD (Seedbox) (+3€)</option>
+      </select>
+    </div>
+
+    <div class="total-box">
+      <span class="lang-ro">Cost Estimat / Lună:</span>
+      <span class="lang-en">Estimated Cost / Month:</span>
+      <div id="costEur">10 €</div>
+      <p style="font-size: 14px; margin-top:10px; color:#aaa; font-weight:normal;">
+        <span class="lang-ro">*Facturarea se face recurent. Anulare oricând.</span>
+        <span class="lang-en">*Billing is recurring. Cancel anytime.</span>
+      </p>
+    </div>
+
+  </section>
+
+  <footer style="background-color: #0f3460; border-top: 1px solid #162447; margin-top:40px;">
+    <p>&copy; 2025 Robi-Hosting | <span class="lang-ro">Toate drepturile rezervate</span><span class="lang-en">All rights reserved</span></p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    function calculateHosting() {
+      const base = parseInt(document.getElementById("serverType").value);
+      const cpu = parseInt(document.getElementById("cpuCores").value);
+      const ram = parseInt(document.getElementById("ramMemory").value);
+      const storage = parseInt(document.getElementById("storageDrive").value);
+
+      const total = base + cpu + ram + storage;
+      const displayTotal = document.getElementById("costEur");
+
+      displayTotal.textContent = total + " €";
+      
+      displayTotal.style.opacity = 0;
+      setTimeout(() => {
+        displayTotal.style.opacity = 1;
+        displayTotal.style.transition = "opacity 0.3s ease";
+      }, 50);
+    }
+    
+    // Initial run
+    if(document.readyState !== 'loading') {
+        calculateHosting();
+    } else {
+        document.addEventListener('DOMContentLoaded', calculateHosting);
+    }
+  </script>
+</body>
+</html>

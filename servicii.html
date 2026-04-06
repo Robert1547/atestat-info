@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicii - Robi Electronics</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .estimate-box {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: var(--bg-header);
+      color: var(--text-header);
+      border-left: 5px solid var(--accent-color);
+      font-size: 18px;
+      display: none;
+      border-radius: 4px;
+      animation: fadeIn 0.5s ease-in-out;
+      box-shadow: var(--box-shadow);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    select {
+       background: var(--bg-card);
+       color: var(--text-color);
+       appearance: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Robi Electronics Orșova</h1>
+    <p>
+      <span class="lang-ro">Servicii profesionale adaptate nevoilor tale</span>
+      <span class="lang-en">Professional services customized for your needs</span>
+    </p>
+  </header>
+
+  <nav>
+    <a href="index.html">
+       <span class="lang-ro">Acasă</span>
+       <span class="lang-en">Home</span>
+    </a>
+    <a href="servicii.html">
+       <span class="lang-ro">Servicii</span>
+       <span class="lang-en">Services</span>
+    </a>
+    <a href="preturi.html">
+       <span class="lang-ro">Prețuri</span>
+       <span class="lang-en">Pricing</span>
+    </a>
+    <a href="hosting.html">Robi-Hosting</a>
+    <div class="dropdown">
+      <button class="dropbtn">
+        <span class="lang-ro">Informații Utile <i class="arrow down"></i></span>
+        <span class="lang-en">Useful Info <i class="arrow down"></i></span>
+      </button>
+      <div class="dropdown-content">
+        <a href="despre-noi.html"><span class="lang-ro">Despre Noi</span><span class="lang-en">About Us</span></a>
+        <a href="echipa.html"><span class="lang-ro">Echipa Noastră</span><span class="lang-en">Our Team</span></a>
+        <a href="faq.html"><span class="lang-ro">Întrebări Frecvente</span><span class="lang-en">FAQ</span></a>
+        <a href="recenzii.html"><span class="lang-ro">Recenzii Clienți</span><span class="lang-en">Reviews</span></a>
+        <a href="termeni.html"><span class="lang-ro">Termeni și Condiții</span><span class="lang-en">Terms & Conditions</span></a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="darkModeToggle">🌙 <span class="lang-ro">Întunecat</span><span class="lang-en">Dark</span></button>
+      <button class="toggle-btn" id="langToggle">🌍 EN</button>
+    </div>
+  </nav>
+
+  <section class="container services-container">
+    <h2>
+      <span class="lang-ro">Calculator Estimativ Reparații</span>
+      <span class="lang-en">Repair Estimate Calculator</span>
+    </h2>
+    <p style="text-align: center; margin-bottom: 30px;">
+      <span class="lang-ro">Selectează parametrii de mai jos pentru a afla un cost estimativ pentru reparația ta.</span>
+      <span class="lang-en">Select the parameters below to find out an estimated cost for your repair.</span>
+    </p>
+
+    <div class="form-group">
+      <label for="brandSelect">
+        <span class="lang-ro">1. Selectează Brand-ul</span>
+        <span class="lang-en">1. Select Brand</span>
+      </label>
+      <select id="brandSelect" onchange="updateDevices()">
+        <option value="" disabled selected>Alege / Select...</option>
+        <option value="apple">Apple</option>
+        <option value="samsung">Samsung</option>
+        <option value="lenovo">Lenovo</option>
+        <option value="dell">Dell</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="deviceSelect">
+        <span class="lang-ro">2. Selectează Dispozitivul</span>
+        <span class="lang-en">2. Select Device</span>
+      </label>
+      <select id="deviceSelect" onchange="updateRepairs()" disabled>
+         <option value="" disabled selected>...</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="repairSelect">
+        <span class="lang-ro">3. Selectează Tipul de Reparație</span>
+        <span class="lang-en">3. Select Repair Type</span>
+      </label>
+      <select id="repairSelect" onchange="showEstimate()" disabled>
+         <option value="" disabled selected>...</option>
+      </select>
+    </div>
+
+    <div id="estimateBox" class="estimate-box">
+      <strong><span class="lang-ro">Cost Estimativ:</span><span class="lang-en">Estimated Cost:</span></strong> <span id="estimateAmount" style="color:var(--accent-color);">0</span> RON
+      <p style="font-size: 14px; margin-top: 10px; color: #ccc;">
+        <i>
+          <span class="lang-ro">*Acesta este un cost orientativ. Pentru o cotație exactă vă rugăm să ne vizitați în magazin sau să ne contactați.</span>
+          <span class="lang-en">*This is an estimate. For an exact quote please visit us in store or contact us.</span>
+        </i>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Robi Electronics Orșova | <span class="lang-ro">Toate drepturile rezervate</span><span class="lang-en">All rights reserved</span></p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    const repairData = {
+      apple: {
+        "iPhone 15 Pro": {
+          "Înlocuire Display / Display Replacement": 1650,
+          "Înlocuire Baterie / Battery Replacement": 350,
+          "Port Încărcare / Charging Port": 250,
+          "Diagnosticare / Diagnostics": 50
+        },
+        "iPhone 14": {
+          "Înlocuire Display / Display Replacement": 1100,
+          "Înlocuire Baterie / Battery Replacement": 280,
+          "Diagnosticare / Diagnostics": 50
+        },
+        "iPhone 13": {
+          "Înlocuire Display / Display Replacement": 450,
+          "Înlocuire Baterie / Battery Replacement": 250
+        },
+        "iPhone 12": {
+          "Înlocuire Display / Display Replacement": 380,
+          "Înlocuire Baterie / Battery Replacement": 200
+        },
+        "MacBook Pro M2": {
+          "Curățare sistem / Cleaning": 150,
+          "Reinstalare MacOS / OS reinstall": 100,
+          "Înlocuire Tastatură / Keyboard Replacement": 750
+        },
+        "MacBook Air M1": {
+          "Curățare sistem / Cleaning": 100,
+          "Înlocuire Baterie / Battery Replacement": 550,
+          "Sistem de operare / OS Fix": 100
+        },
+        "iPad Pro 11": {
+          "Înlocuire Display / Display Replacement": 1200,
+          "Înlocuire Baterie / Battery Replacement": 400
+        }
+      },
+      samsung: {
+        "Galaxy S24 Ultra": {
+          "Înlocuire Ecran / Screen Replacement": 1450,
+          "Înlocuire Baterie / Battery Replacement": 350
+        },
+        "Galaxy S23": {
+          "Înlocuire Ecran / Screen Replacement": 850,
+          "Înlocuire Baterie / Battery Replacement": 250
+        },
+        "Galaxy S22 Ultra": {
+          "Înlocuire Ecran / Screen Replacement": 1150,
+          "Înlocuire Baterie / Battery Replacement": 250,
+          "Înlocuire Modul Camere / Camera Module replacement": 450
+        },
+        "Galaxy Z Flip 4": {
+          "Înlocuire Ecran Intern / Internal Screen Fix": 1600,
+          "Înlocuire Baterie internă / Battery": 350
+        },
+        "Galaxy A54": {
+          "Înlocuire Ecran / Screen Replacement": 350,
+          "Modul USB / USB Module": 150
+        }
+      },
+      lenovo: {
+        "Legion 5": {
+          "Curățare / Cleaning": 150,
+          "Upgrade RAM/SSD": 100,
+          "Tastatură / Keyboard": 350
+        },
+        "IdeaPad Slim 5": {
+          "Curățare / Cleaning": 100,
+          "Înlocuire Display / Display Replacement": 550,
+          "Balamale Spurte / Broken Hinges Fix": 200
+        },
+        "ThinkPad T14": {
+          "Înlocuire Display / Display Replacement": 450
+        },
+        "ThinkPad X1 Carbon": {
+          "Înlocuire Baterie / Battery Replacement": 350,
+          "Curățare sistem / System Cleaning": 150
+        }
+      },
+      dell: {
+        "XPS 15": {
+          "Înlocuire Baterie / Battery Replacement": 350,
+          "Înlocuire Display 4K / 4K Display": 1150
+        }
+      }
+    };
+
+    function updateDevices() {
+      const brand = document.getElementById("brandSelect").value;
+      const deviceSelect = document.getElementById("deviceSelect");
+      const repairSelect = document.getElementById("repairSelect");
+      const estimateBox = document.getElementById("estimateBox");
+      
+      deviceSelect.innerHTML = '<option value="" disabled selected>Alege / Select...</option>';
+      repairSelect.innerHTML = '<option value="" disabled selected>Alege / Select...</option>';
+      repairSelect.disabled = true;
+      estimateBox.style.display = "none";
+
+      if (brand && repairData[brand]) {
+        deviceSelect.disabled = false;
+        const devices = Object.keys(repairData[brand]);
+        devices.forEach(device => {
+          let option = document.createElement("option");
+          option.value = device;
+          option.textContent = device;
+          deviceSelect.appendChild(option);
+        });
+      }
+    }
+
+    function updateRepairs() {
+      const brand = document.getElementById("brandSelect").value;
+      const device = document.getElementById("deviceSelect").value;
+      const repairSelect = document.getElementById("repairSelect");
+      const estimateBox = document.getElementById("estimateBox");
+
+      repairSelect.innerHTML = '<option value="" disabled selected>Alege / Select...</option>';
+      estimateBox.style.display = "none";
+
+      if (brand && device && repairData[brand][device]) {
+        repairSelect.disabled = false;
+        const repairs = Object.keys(repairData[brand][device]);
+        repairs.forEach(repair => {
+          let option = document.createElement("option");
+          option.value = repair;
+          option.textContent = repair;
+          repairSelect.appendChild(option);
+        });
+      }
+    }
+
+    function showEstimate() {
+      const brand = document.getElementById("brandSelect").value;
+      const device = document.getElementById("deviceSelect").value;
+      const repair = document.getElementById("repairSelect").value;
+      const estimateBox = document.getElementById("estimateBox");
+      const estimateAmount = document.getElementById("estimateAmount");
+
+      if (brand && device && repair) {
+        const cost = repairData[brand][device][repair];
+        estimateAmount.textContent = cost;
+        estimateBox.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
