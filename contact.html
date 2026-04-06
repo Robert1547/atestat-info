@@ -88,7 +88,7 @@
 
     <div class="contact-form">
       <h2><span class="lang-ro">Trimite-ne un mesaj</span><span class="lang-en">Send us a message</span></h2>
-      <form action="#" method="post">
+      <form id="contactForm">
         <div class="form-group">
           <label for="nume"><span class="lang-ro">Nume</span><span class="lang-en">Name</span></label>
           <input type="text" id="nume" name="nume" required>
@@ -116,10 +116,129 @@
     </div>
   </section>
 
+  <!-- Istoric Reparații (Se incarcă din localStorage) -->
+  <section class="container" style="margin-top: 0;">
+    <h2>
+      <span class="lang-ro">Istoric Reparații Trimise</span>
+      <span class="lang-en">My Repair Requests</span>
+    </h2>
+    <div id="repairsList" style="display: flex; flex-direction: column; gap: 15px;">
+      <!-- Tickets will be injected here -->
+    </div>
+  </section>
+
   <footer>
     <p>&copy; 2025 Robi Electronics Orșova | <span class="lang-ro">Toate drepturile rezervate</span><span class="lang-en">All rights reserved</span></p>
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const contactForm = document.getElementById("contactForm");
+      const repairsList = document.getElementById("repairsList");
+
+      // Load existing repairs
+      function renderRepairs() {
+        repairsList.innerHTML = "";
+        let repairs = JSON.parse(localStorage.getItem("repairsDB")) || [];
+        
+        if (repairs.length === 0) {
+          repairsList.innerHTML = `
+            <p style="text-align:center; opacity:0.7;">
+              <span class="lang-ro">Nu ai trimis nicio cerere încă.</span>
+              <span class="lang-en">You haven't submitted any requests yet.</span>
+            </p>`;
+          // Re-trigger global lang update to ensure dynamically added spans display correct lang
+          setTimeout(() => { if(window.updateLangDisplay) window.updateLangDisplay(); }, 10);
+          return;
+        }
+
+        function getStatusColor(st) {
+           if (!st) return "var(--accent-color)";
+           if (st.includes("așteptare ⏳")) return "#f39c12"; // Orange
+           if (st.includes("Service 🔧")) return "#3498db"; // Blue
+           if (st.includes("piesă") || st.includes("piese 📦")) return "#9b59b6"; // Purple
+           if (st.includes("Finalizată ✅")) return "#2ecc71"; // Green
+           if (st.includes("🚚")) return "#00d2ff"; // Cyan
+           if (st.includes("❌")) return "#e74c3c"; // Red
+           return "var(--accent-color)";
+        }
+
+        // Render from newest to oldest
+        repairs.slice().reverse().forEach(ticket => {
+          const card = document.createElement("div");
+          card.style.background = "var(--bg-nav)";
+          card.style.color = "white";
+          card.style.padding = "20px";
+          card.style.borderRadius = "8px";
+          card.style.border = "1px solid var(--border-color)";
+          
+          let trackHtml = `<div style="margin-top: 20px; border-left: 2px solid rgba(255,255,255,0.2); padding-left: 20px;">`;
+          let hist = ticket.history || [{ state: ticket.status, timestamp: ticket.date }]; // Compatibility config
+          
+          hist.forEach((h, i) => {
+             let isLast = (i === hist.length - 1);
+             let clr = getStatusColor(h.state);
+             let fw = isLast ? "bold" : "normal";
+             let op = isLast ? "1" : "0.5";
+             trackHtml += `
+               <div style="position:relative; margin-bottom: 15px; opacity: ${op};">
+                 <div style="position:absolute; left: -26px; top: 4px; width: 10px; height: 10px; background: ${clr}; border-radius: 50%; border: 2px solid var(--bg-nav);"></div>
+                 <div style="font-weight: ${fw}; font-size: ${isLast ? '16px' : '14px'}; color: ${isLast ? 'white' : '#ccc'}">${h.state}</div>
+                 <div style="font-size: 12px; color: #aaa; margin-top: 3px;">⏰ ${h.timestamp}</div>
+               </div>
+             `;
+          });
+          trackHtml += `</div>`;
+          
+          card.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; margin-bottom: 10px;">
+              <strong>#${ticket.id} - ${ticket.dispozitiv || 'Dispozitiv nespecificat'}</strong>
+              <span style="background:${getStatusColor(ticket.status)}; padding:4px 10px; border-radius:4px; font-size:14px; font-weight:bold; color:black; display: inline-block;">${ticket.status}</span>
+            </div>
+            <p style="margin:0; font-size: 15px; opacity:0.9;"><i>"${ticket.mesaj}"</i></p>
+            ${trackHtml}
+          `;
+          repairsList.appendChild(card);
+        });
+      }
+
+      renderRepairs();
+
+      // Submit new repair
+      if (contactForm) {
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          
+          const nume = document.getElementById("nume").value;
+          const email = document.getElementById("email").value;
+          const dispozitiv = document.getElementById("dispozitiv").value;
+          const mesaj = document.getElementById("mesaj").value;
+
+          const newTicket = {
+            id: Math.floor(Math.random() * 10000), // Random ID
+            nume,
+            email,
+            dispozitiv,
+            mesaj,
+            status: "În așteptare ⏳",
+            history: [{ state: "În așteptare ⏳", timestamp: new Date().toLocaleString() }],
+            date: new Date().toLocaleString()
+          };
+
+          let repairs = JSON.parse(localStorage.getItem("repairsDB")) || [];
+          repairs.push(newTicket);
+          localStorage.setItem("repairsDB", JSON.stringify(repairs));
+
+          contactForm.reset();
+          renderRepairs();
+          
+          alert(document.body.classList.contains("en-mode") 
+             ? "Request sent successfully! Check the history below." 
+             : "Cerere trimisă cu succes! Verifică istoricul mai jos.");
+        });
+      }
+    });
+  </script>
 </body>
 </html>

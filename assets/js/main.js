@@ -1,5 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
+    // --- Mobile Hamburger Menu ---
+    const nav = document.querySelector('nav');
+    if (nav) {
+        const hamburgerBtn = document.createElement('button');
+        hamburgerBtn.className = 'hamburger-btn toggle-btn';
+        hamburgerBtn.innerHTML = '☰ Meniu';
+        hamburgerBtn.style.alignSelf = 'center';
+
+        nav.insertBefore(hamburgerBtn, nav.firstChild);
+
+        hamburgerBtn.addEventListener('click', () => {
+            nav.classList.toggle('nav-open');
+        });
+    }
+
     // --- Dark Mode Logic ---
     const darkModeBtn = document.getElementById("darkModeToggle");
     const body = document.body;

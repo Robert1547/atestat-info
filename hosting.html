@@ -223,6 +223,42 @@
     footer span {
       color: #00d2ff;
     }
+
+    /* Mobile Optimization for Hosting */
+    @media (max-width: 768px) {
+      .hamburger-btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        padding: 5px;
+      }
+      
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      nav > a, nav > .dropdown {
+        display: none;
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+      }
+
+      nav.nav-open > a, nav.nav-open > .dropdown {
+        display: block;
+      }
+
+      header h1 { font-size: 30px; }
+      .host-card { width: 100%; }
+    }
+
+    @media (min-width: 769px) {
+      .hamburger-btn { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -291,5 +327,6 @@
     <p>&copy; 2025 <span>Robi-Hosting</span> (O divizie a Robi Electronics) | Toate drepturile rezervate</p>
   </footer>
 
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

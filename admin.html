@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Robi Electronics</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .admin-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      background-color: var(--bg-card);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: var(--box-shadow);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-color);
+    }
+
+    th {
+      background-color: var(--bg-nav);
+      color: white;
+    }
+
+    tr:hover {
+      background-color: rgba(0, 119, 204, 0.05);
+    }
+    
+    .dark-theme tr:hover {
+        background-color: rgba(0, 210, 255, 0.05);
+    }
+
+    select.status-select {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid var(--accent-color);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Panou Administrator</h1>
+    <p>Gestiune Tichete Reparații Service</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Înapoi la Site (Acasă)</a>
+    <a href="contact.html">Vezi Pagina Contact</a>
+    <div class="nav-toggles">
+      <button class="toggle-btn" id="darkModeToggle">🌙 Întunecat</button>
+    </div>
+  </nav>
+
+  <section class="admin-container">
+    <h2 style="color: var(--accent-color);">Cererile Clienților</h2>
+    
+    <div style="overflow-x:auto;">
+      <table id="adminTable">
+        <thead>
+          <tr>
+            <th>ID Tichet</th>
+            <th>Data</th>
+            <th>Nume Client</th>
+            <th>Dispozitiv</th>
+            <th>Mesaj Eroare</th>
+            <th>Status Actual</th>
+            <th>Acțiuni</th>
+          </tr>
+        </thead>
+        <tbody id="adminTableBody">
+          <!-- Populated from JS -->
+        </tbody>
+      </table>
+    </div>
+    
+    <div id="noDataMessage" style="display:none; text-align:center; padding: 40px; color: var(--text-color); opacity:0.6;">
+       Nu există date referitoare la cereri de service. Când un client apasă 'Trimite' în contact.html ele vor apărea aici.
+    </div>
+
+    <button onclick="clearAllData()" class="delete-btn" style="margin-top: 30px;">Șterge toată baza de date (Wipe)</button>
+  </section>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const auth = sessionStorage.getItem("adminAuth");
+      if (auth !== "true") {
+         const u = prompt("Admin Username:");
+         const p = prompt("Admin Password:");
+         if (u === "admin" && p === "1234") {
+            sessionStorage.setItem("adminAuth", "true");
+         } else {
+            alert("Acces interzis!");
+            window.location.href = "index.html"; 
+         }
+      }
+      renderAdminTable();
+    });
+
+    const statusOptions = [
+      "În așteptare ⏳",
+      "Preluată în Service 🔧",
+      "În așteptarea unei piese 📦",
+      "Reparație Finalizată ✅",
+      "Respinsă / Anulată ❌",
+      "Expediată către Client 🚚"
+    ];
+
+    function getStatusColor(st) {
+       if (!st) return "var(--accent-color)";
+       if (st.includes("așteptare ⏳")) return "#f39c12"; // Orange
+       if (st.includes("Service 🔧")) return "#3498db"; // Blue
+       if (st.includes("piesă") || st.includes("piese 📦")) return "#9b59b6"; // Purple
+       if (st.includes("Finalizată ✅")) return "#2ecc71"; // Green
+       if (st.includes("🚚")) return "#00d2ff"; // Cyan
+       if (st.includes("❌")) return "#e74c3c"; // Red
+       return "var(--accent-color)";
+    }
+
+    function renderAdminTable() {
+      const tbody = document.getElementById("adminTableBody");
+      const noDataMessage = document.getElementById("noDataMessage");
+      const table = document.getElementById("adminTable");
+      
+      tbody.innerHTML = "";
+      
+      let repairs = JSON.parse(localStorage.getItem("repairsDB")) || [];
+
+      if (repairs.length === 0) {
+        noDataMessage.style.display = "block";
+        table.style.display = "none";
+        return;
+      }
+
+      noDataMessage.style.display = "none";
+      table.style.display = "table";
+
+      // Render oldest to newest, or newest first (slice.reverse)
+      repairs.slice().reverse().forEach((ticket, index) => {
+        // Reverse array math to get correct original index for modifying localData
+        const originalIndex = repairs.length - 1 - index;
+
+        const row = document.createElement("tr");
+
+        // Prepare dropdown
+        let selectHtml = `<select class="status-select" style="background-color: ${getStatusColor(ticket.status)}; color: black;" onchange="updateStatus(${originalIndex}, this.value)">`;
+        statusOptions.forEach(opt => {
+           let selected = (ticket.status === opt) ? "selected" : "";
+           selectHtml += `<option value="${opt}" ${selected}>${opt}</option>`;
+        });
+        selectHtml += `</select>`;
+
+        row.innerHTML = `
+          <td><strong>#${ticket.id}</strong></td>
+          <td>${ticket.date}</td>
+          <td>${ticket.nume} <br><small style="color:var(--accent-color)">${ticket.email}</small></td>
+          <td><strong>${ticket.dispozitiv}</strong></td>
+          <td style="max-width: 250px;"><i>"${ticket.mesaj}"</i></td>
+          <td>${selectHtml}</td>
+          <td>
+             <button onclick="deleteTicket(${originalIndex})" class="delete-btn">Șterge</button>
+          </td>
+        `;
+        
+        tbody.appendChild(row);
+      });
+    }
+
+    function updateStatus(index, newStatus) {
+      let repairs = JSON.parse(localStorage.getItem("repairsDB")) || [];
+      if (repairs[index]) {
+        repairs[index].status = newStatus;
+        if (!repairs[index].history) {
+            repairs[index].history = [{ state: repairs[index].status, timestamp: repairs[index].date }];
+        }
+        repairs[index].history.push({
+            state: newStatus,
+            timestamp: new Date().toLocaleString()
+        });
+        localStorage.setItem("repairsDB", JSON.stringify(repairs));
+        renderAdminTable(); // refresh table to show new colors
+      }
+    }
+
+    function deleteTicket(index) {
+      if(confirm("Sigur dorești să ștergi acest tichet de reparație?")) {
+        let repairs = JSON.parse(localStorage.getItem("repairsDB")) || [];
+        repairs.splice(index, 1);
+        localStorage.setItem("repairsDB", JSON.stringify(repairs));
+        renderAdminTable();
+      }
+    }
+
+    function clearAllData() {
+      if(confirm("ATENȚIE! Vei șterge TOT istoricul cererilor clienților! Sigur continui?")) {
+        localStorage.removeItem("repairsDB");
+        renderAdminTable();
+      }
+    }
+  </script>
+</body>
+</html>
